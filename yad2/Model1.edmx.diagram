@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7e529af55f874f18aa855d29d07a02ba" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="Yad2Model.Add" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Yad2Model.Category" Width="1.5" PointX="0.625" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Yad2Model.Location" Width="1.5" PointX="0.875" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Yad2Model.User" Width="1.5" PointX="8.375" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="Yad2Model.AddCategory" />
+        <AssociationConnector Association="Yad2Model.AddLocation" />
+        <EntityTypeShape EntityType="Yad2Model.Group" Width="1.5" PointX="3.75" PointY="6.375" />
+        <AssociationConnector Association="Yad2Model.GroupAdd" />
+        <EntityTypeShape EntityType="Yad2Model.Partner" Width="1.5" PointX="7.875" PointY="5" />
+        <InheritanceConnector EntityType="Yad2Model.Partner" />
+        <EntityTypeShape EntityType="Yad2Model.Manager" Width="1.5" PointX="7.875" PointY="6.75" />
+        <InheritanceConnector EntityType="Yad2Model.Manager" />
+        <AssociationConnector Association="Yad2Model.GroupManager" />
+        <AssociationConnector Association="Yad2Model.GroupPartner" />
+        <AssociationConnector Association="Yad2Model.GroupCategory" />
+        <EntityTypeShape EntityType="Yad2Model.Message" Width="1.5" PointX="10.75" PointY="1.625" />
+        <AssociationConnector Association="Yad2Model.UserMessageCreat" />
+        <AssociationConnector Association="Yad2Model.UserMessageRecived" />
+        <AssociationConnector Association="Yad2Model.PartnersAds" />
+        <EntityTypeShape EntityType="Yad2Model.Request" Width="1.5" PointX="12.625" PointY="5.375" />
+        <AssociationConnector Association="Yad2Model.RequestAdd" />
+        <AssociationConnector Association="Yad2Model.RequestUser" />
+        <AssociationConnector Association="Yad2Model.PartnerRequest" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

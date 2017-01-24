@@ -1,0 +1,32 @@
+﻿<Window x:Class="yad2.Profile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Profile" Height="250" Width="350">
+    <Grid Background="SandyBrown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="174" />
+            <ColumnDefinition Width="137" />
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name ="userName" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Username" VerticalAlignment="Bottom"  FontSize="16" Height="21"  Margin="24,0,0,0" FontWeight="Bold"/>
+        <TextBlock x:Name="Email" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Email" VerticalAlignment="Bottom"  FontSize="16" Height="21"  Margin="24,0,0,0"/>
+        <TextBlock x:Name="Gender" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Gender" VerticalAlignment="Bottom"  FontSize="16" Height="21"  Margin="24,0,0,0"/>
+        <TextBlock x:Name="Age" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Age" VerticalAlignment="Bottom"  FontSize="16" Height="21"  Margin="24,0,0,0"/>
+        <TextBlock x:Name ="GroupsCaption"  Grid.Row="4" HorizontalAlignment="Left" Margin="25,12,0,0" TextWrapping="Wrap" Text="Choose a group:" VerticalAlignment="Top" Height="16" Width="97" />
+        <ComboBox x:Name="Groups" Grid.Row="5"  SelectionChanged="Groups_SelectionChanged" Margin="24,0,0,0"/>
+        <Button x:Name="NewGroup"  Grid.Row="5" Grid.Column="1" Width="101" HorizontalAlignment="Center" Margin="18,5" Background="DimGray" Foreground="Lavender" Click="NewGroup_Click" Content="Add New Group" />
+
+
+
+    </Grid>
+
+
+</Window>

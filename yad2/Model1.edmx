@@ -1,0 +1,777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Yad2Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Yad2ModelStoreContainer">
+    <EntitySet Name="Adds" EntityType="Yad2Model.Store.Adds" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categories" EntityType="Yad2Model.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Locations" EntityType="Yad2Model.Store.Locations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="Yad2Model.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Groups" EntityType="Yad2Model.Store.Groups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Messages" EntityType="Yad2Model.Store.Messages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Requests" EntityType="Yad2Model.Store.Requests" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users_Partner" EntityType="Yad2Model.Store.Users_Partner" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users_Manager" EntityType="Yad2Model.Store.Users_Manager" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GroupPartner" EntityType="Yad2Model.Store.GroupPartner" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserMessageRecived" EntityType="Yad2Model.Store.UserMessageRecived" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AddCategory" Association="Yad2Model.Store.AddCategory">
+      <End Role="Add" EntitySet="Adds" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="AddLocation" Association="Yad2Model.Store.AddLocation">
+      <End Role="Add" EntitySet="Adds" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="GroupAdd" Association="Yad2Model.Store.GroupAdd">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="Add" EntitySet="Adds" />
+    </AssociationSet>
+    <AssociationSet Name="GroupManager" Association="Yad2Model.Store.GroupManager">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="Manager" EntitySet="Users_Manager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupPartner_Group" Association="Yad2Model.Store.FK_GroupPartner_Group">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="GroupPartner" EntitySet="GroupPartner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupPartner_Partner" Association="Yad2Model.Store.FK_GroupPartner_Partner">
+      <End Role="Partner" EntitySet="Users_Partner" />
+      <End Role="GroupPartner" EntitySet="GroupPartner" />
+    </AssociationSet>
+    <AssociationSet Name="GroupCategory" Association="Yad2Model.Store.GroupCategory">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="UserMessageCreat" Association="Yad2Model.Store.UserMessageCreat">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserMessageRecived_User" Association="Yad2Model.Store.FK_UserMessageRecived_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserMessageRecived" EntitySet="UserMessageRecived" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserMessageRecived_Message" Association="Yad2Model.Store.FK_UserMessageRecived_Message">
+      <End Role="Message" EntitySet="Messages" />
+      <End Role="UserMessageRecived" EntitySet="UserMessageRecived" />
+    </AssociationSet>
+    <AssociationSet Name="PartnersAds" Association="Yad2Model.Store.PartnersAds">
+      <End Role="Add" EntitySet="Adds" />
+      <End Role="Partner" EntitySet="Users_Partner" />
+    </AssociationSet>
+    <AssociationSet Name="RequestAdd" Association="Yad2Model.Store.RequestAdd">
+      <End Role="Request" EntitySet="Requests" />
+      <End Role="Add" EntitySet="Adds" />
+    </AssociationSet>
+    <AssociationSet Name="RequestUser" Association="Yad2Model.Store.RequestUser">
+      <End Role="Request" EntitySet="Requests" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="PartnerRequest" Association="Yad2Model.Store.PartnerRequest">
+      <End Role="Request" EntitySet="Requests" />
+      <End Role="Partner" EntitySet="Users_Partner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partner_inherits_User" Association="Yad2Model.Store.FK_Partner_inherits_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Partner" EntitySet="Users_Partner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Manager_inherits_Partner" Association="Yad2Model.Store.FK_Manager_inherits_Partner">
+      <End Role="Partner" EntitySet="Users_Partner" />
+      <End Role="Manager" EntitySet="Users_Manager" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Adds">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="DatePublished" Type="datetime" Nullable="false" />
+    <Property Name="EventDate" Type="datetime" Nullable="true" />
+    <Property Name="About" Type="varchar" Nullable="true" MaxLength="500" />
+    <Property Name="CategoryType" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LocationArea" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="PartnerEmail" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Group_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="Type" />
+    </Key>
+    <Property Name="Type" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Area" />
+    </Key>
+    <Property Name="Area" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="Gender" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="ManagerEmail" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="CategoryType" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Chat" Type="varchar" Nullable="true" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Messages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserEmail" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Requests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="status" Type="bit" Nullable="false" />
+    <Property Name="Rank" Type="int" Nullable="true" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Add_id" Type="int" Nullable="false" />
+    <Property Name="User_Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Partner_Email" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users_Partner">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Users_Manager">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="GroupPartner">
+    <Key>
+      <PropertyRef Name="PartnerIn_Id" />
+      <PropertyRef Name="Partners_Email" />
+    </Key>
+    <Property Name="PartnerIn_Id" Type="int" Nullable="false" />
+    <Property Name="Partners_Email" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserMessageRecived">
+    <Key>
+      <PropertyRef Name="UsersInMessage_Email" />
+      <PropertyRef Name="MessagesRecived_Id" />
+    </Key>
+    <Property Name="UsersInMessage_Email" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="MessagesRecived_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="AddCategory">
+    <End Role="Add" Type="Yad2Model.Store.Adds" Multiplicity="*" />
+    <End Role="Category" Type="Yad2Model.Store.Categories" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Type" />
+      </Principal>
+      <Dependent Role="Add">
+        <PropertyRef Name="CategoryType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AddLocation">
+    <End Role="Add" Type="Yad2Model.Store.Adds" Multiplicity="*" />
+    <End Role="Location" Type="Yad2Model.Store.Locations" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Area" />
+      </Principal>
+      <Dependent Role="Add">
+        <PropertyRef Name="LocationArea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GroupAdd">
+    <End Role="Group" Type="Yad2Model.Store.Groups" Multiplicity="1" />
+    <End Role="Add" Type="Yad2Model.Store.Adds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Add">
+        <PropertyRef Name="Group_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GroupManager">
+    <End Role="Group" Type="Yad2Model.Store.Groups" Multiplicity="*" />
+    <End Role="Manager" Type="Yad2Model.Store.Users_Manager" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Manager">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="ManagerEmail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GroupCategory">
+    <End Role="Group" Type="Yad2Model.Store.Groups" Multiplicity="*" />
+    <End Role="Category" Type="Yad2Model.Store.Categories" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Type" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="CategoryType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserMessageCreat">
+    <End Role="User" Type="Yad2Model.Store.Users" Multiplicity="1" />
+    <End Role="Message" Type="Yad2Model.Store.Messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="UserEmail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PartnersAds">
+    <End Role="Add" Type="Yad2Model.Store.Adds" Multiplicity="*" />
+    <End Role="Partner" Type="Yad2Model.Store.Users_Partner" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Partner">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Add">
+        <PropertyRef Name="PartnerEmail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RequestAdd">
+    <End Role="Request" Type="Yad2Model.Store.Requests" Multiplicity="*" />
+    <End Role="Add" Type="Yad2Model.Store.Adds" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Add">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="Add_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RequestUser">
+    <End Role="Request" Type="Yad2Model.Store.Requests" Multiplicity="*" />
+    <End Role="User" Type="Yad2Model.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="User_Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PartnerRequest">
+    <End Role="Request" Type="Yad2Model.Store.Requests" Multiplicity="*" />
+    <End Role="Partner" Type="Yad2Model.Store.Users_Partner" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Partner">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="Partner_Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupPartner_Group">
+    <End Role="Group" Type="Yad2Model.Store.Groups" Multiplicity="1" />
+    <End Role="GroupPartner" Type="Yad2Model.Store.GroupPartner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupPartner">
+        <PropertyRef Name="PartnerIn_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupPartner_Partner">
+    <End Role="GroupPartner" Type="Yad2Model.Store.GroupPartner" Multiplicity="*" />
+    <End Role="Partner" Type="Yad2Model.Store.Users_Partner" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Partner">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="GroupPartner">
+        <PropertyRef Name="Partners_Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserMessageRecived_User">
+    <End Role="User" Type="Yad2Model.Store.Users" Multiplicity="1" />
+    <End Role="UserMessageRecived" Type="Yad2Model.Store.UserMessageRecived" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="UserMessageRecived">
+        <PropertyRef Name="UsersInMessage_Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserMessageRecived_Message">
+    <End Role="UserMessageRecived" Type="Yad2Model.Store.UserMessageRecived" Multiplicity="*" />
+    <End Role="Message" Type="Yad2Model.Store.Messages" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Message">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserMessageRecived">
+        <PropertyRef Name="MessagesRecived_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partner_inherits_User">
+    <End Role="User" Type="Yad2Model.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Partner" Type="Yad2Model.Store.Users_Partner" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Partner">
+        <PropertyRef Name="Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Manager_inherits_Partner">
+    <End Role="Partner" Type="Yad2Model.Store.Users_Partner" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Manager" Type="Yad2Model.Store.Users_Manager" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Partner">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Yad2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Add">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="DatePublished" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventDate" Type="DateTime" Precision="3" />
+          <Property Name="About" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Category" Relationship="Yad2Model.AddCategory" FromRole="Add" ToRole="Category" />
+          <Property Name="CategoryType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Location" Relationship="Yad2Model.AddLocation" FromRole="Add" ToRole="Location" />
+          <Property Name="LocationArea" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Group" Relationship="Yad2Model.GroupAdd" FromRole="Add" ToRole="Group" />
+          <NavigationProperty Name="Advertisor" Relationship="Yad2Model.PartnersAds" FromRole="Add" ToRole="Partner" />
+          <Property Name="PartnerEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Requests" Relationship="Yad2Model.RequestAdd" FromRole="Add" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Adds" Relationship="Yad2Model.AddCategory" FromRole="Category" ToRole="Add" />
+          <NavigationProperty Name="Groups" Relationship="Yad2Model.GroupCategory" FromRole="Category" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Area" />
+          </Key>
+          <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Adds" Relationship="Yad2Model.AddLocation" FromRole="Location" ToRole="Add" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MessagesCreate" Relationship="Yad2Model.UserMessageCreat" FromRole="User" ToRole="Message" />
+          <NavigationProperty Name="MessagesRecived" Relationship="Yad2Model.UserMessageRecived" FromRole="User" ToRole="Message" />
+          <NavigationProperty Name="RequestsSent" Relationship="Yad2Model.RequestUser" FromRole="User" ToRole="Request" />
+        </EntityType>
+        <EntityContainer Name="Yad2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adds" EntityType="Self.Add" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="AddCategory" Association="Yad2Model.AddCategory">
+            <End Role="Add" EntitySet="Adds" />
+            <End Role="Category" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="AddLocation" Association="Yad2Model.AddLocation">
+            <End Role="Add" EntitySet="Adds" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <EntitySet Name="Groups" EntityType="Yad2Model.Group" />
+          <AssociationSet Name="GroupAdd" Association="Yad2Model.GroupAdd">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Add" EntitySet="Adds" />
+          </AssociationSet>
+          <AssociationSet Name="GroupManager" Association="Yad2Model.GroupManager">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Manager" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="GroupPartner" Association="Yad2Model.GroupPartner">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Partner" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="GroupCategory" Association="Yad2Model.GroupCategory">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Category" EntitySet="Categories" />
+          </AssociationSet>
+          <EntitySet Name="Messages" EntityType="Yad2Model.Message" />
+          <AssociationSet Name="UserMessageCreat" Association="Yad2Model.UserMessageCreat">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="UserMessageRecived" Association="Yad2Model.UserMessageRecived">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="PartnersAds" Association="Yad2Model.PartnersAds">
+            <End Role="Add" EntitySet="Adds" />
+            <End Role="Partner" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Requests" EntityType="Yad2Model.Request" />
+          <AssociationSet Name="RequestAdd" Association="Yad2Model.RequestAdd">
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="Add" EntitySet="Adds" />
+          </AssociationSet>
+          <AssociationSet Name="RequestUser" Association="Yad2Model.RequestUser">
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="PartnerRequest" Association="Yad2Model.PartnerRequest">
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="Partner" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="AddCategory">
+          <End Type="Yad2Model.Add" Role="Add" Multiplicity="*" />
+          <End Type="Yad2Model.Category" Role="Category" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Type" />
+            </Principal>
+            <Dependent Role="Add">
+              <PropertyRef Name="CategoryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AddLocation">
+          <End Type="Yad2Model.Add" Role="Add" Multiplicity="*" />
+          <End Type="Yad2Model.Location" Role="Location" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Area" />
+            </Principal>
+            <Dependent Role="Add">
+              <PropertyRef Name="LocationArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Add" Relationship="Yad2Model.GroupAdd" FromRole="Group" ToRole="Add" />
+          <NavigationProperty Name="Manager" Relationship="Yad2Model.GroupManager" FromRole="Group" ToRole="Manager" />
+          <Property Name="ManagerEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Partners" Relationship="Yad2Model.GroupPartner" FromRole="Group" ToRole="Partner" />
+          <NavigationProperty Name="Category" Relationship="Yad2Model.GroupCategory" FromRole="Group" ToRole="Category" />
+          <Property Name="CategoryType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Chat" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="GroupAdd">
+          <End Type="Yad2Model.Group" Role="Group" Multiplicity="1" />
+          <End Type="Yad2Model.Add" Role="Add" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="Partner" BaseType="Yad2Model.User" >
+          <NavigationProperty Name="PartnerIn" Relationship="Yad2Model.GroupPartner" FromRole="Partner" ToRole="Group" />
+          <NavigationProperty Name="AddsAdvertized" Relationship="Yad2Model.PartnersAds" FromRole="Partner" ToRole="Add" />
+          <NavigationProperty Name="RequestsRecived" Relationship="Yad2Model.PartnerRequest" FromRole="Partner" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Manager" BaseType="Yad2Model.Partner" >
+          <NavigationProperty Name="Groups" Relationship="Yad2Model.GroupManager" FromRole="Manager" ToRole="Group" />
+        </EntityType>
+        <Association Name="GroupManager">
+          <End Type="Yad2Model.Group" Role="Group" Multiplicity="*" />
+          <End Type="Yad2Model.Manager" Role="Manager" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="ManagerEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GroupPartner">
+          <End Type="Yad2Model.Group" Role="Group" Multiplicity="*" />
+          <End Type="Yad2Model.Partner" Role="Partner" Multiplicity="*" />
+        </Association>
+        <Association Name="GroupCategory">
+          <End Type="Yad2Model.Group" Role="Group" Multiplicity="*" />
+          <End Type="Yad2Model.Category" Role="Category" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Type" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="CategoryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Creator" Relationship="Yad2Model.UserMessageCreat" FromRole="Message" ToRole="User" />
+          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UsersInMessage" Relationship="Yad2Model.UserMessageRecived" FromRole="Message" ToRole="User" />
+        </EntityType>
+        <Association Name="UserMessageCreat">
+          <End Type="Yad2Model.User" Role="User" Multiplicity="1" />
+          <End Type="Yad2Model.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="UserEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserMessageRecived">
+          <End Type="Yad2Model.User" Role="User" Multiplicity="*" />
+          <End Type="Yad2Model.Message" Role="Message" Multiplicity="*" />
+        </Association>
+        <Association Name="PartnersAds">
+          <End Type="Yad2Model.Add" Role="Add" Multiplicity="*" />
+          <End Type="Yad2Model.Partner" Role="Partner" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Partner">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Add">
+              <PropertyRef Name="PartnerEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="Rank" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Add" Relationship="Yad2Model.RequestAdd" FromRole="Request" ToRole="Add" />
+          <NavigationProperty Name="User" Relationship="Yad2Model.RequestUser" FromRole="Request" ToRole="User" />
+          <NavigationProperty Name="Partner" Relationship="Yad2Model.PartnerRequest" FromRole="Request" ToRole="Partner" />
+        </EntityType>
+        <Association Name="RequestAdd">
+          <End Type="Yad2Model.Request" Role="Request" Multiplicity="*" />
+          <End Type="Yad2Model.Add" Role="Add" Multiplicity="1" />
+        </Association>
+        <Association Name="RequestUser">
+          <End Type="Yad2Model.Request" Role="Request" Multiplicity="*" />
+          <End Type="Yad2Model.User" Role="User" Multiplicity="1" />
+        </Association>
+        <Association Name="PartnerRequest">
+          <End Type="Yad2Model.Request" Role="Request" Multiplicity="*" />
+          <End Type="Yad2Model.Partner" Role="Partner" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Yad2ModelStoreContainer" CdmEntityContainer="Yad2Entities">
+    <EntitySetMapping Name="Adds">
+      <EntityTypeMapping TypeName="IsTypeOf(Yad2Model.Add)">
+        <MappingFragment StoreEntitySet="Adds">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="DatePublished" ColumnName="DatePublished" />
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+          <ScalarProperty Name="About" ColumnName="About" />
+          <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
+          <ScalarProperty Name="LocationArea" ColumnName="LocationArea" />
+          <ScalarProperty Name="PartnerEmail" ColumnName="PartnerEmail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(Yad2Model.Category)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="IsTypeOf(Yad2Model.Location)">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="Area" ColumnName="Area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Yad2Model.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Yad2Model.Partner)">
+        <MappingFragment StoreEntitySet="Users_Partner">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Yad2Model.Manager)">
+        <MappingFragment StoreEntitySet="Users_Manager">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="IsTypeOf(Yad2Model.Group)">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ManagerEmail" ColumnName="ManagerEmail" />
+          <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
+          <ScalarProperty Name="Chat" ColumnName="Chat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="IsTypeOf(Yad2Model.Message)">
+        <MappingFragment StoreEntitySet="Messages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Requests">
+      <EntityTypeMapping TypeName="IsTypeOf(Yad2Model.Request)">
+        <MappingFragment StoreEntitySet="Requests">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="Rank" ColumnName="Rank" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="GroupAdd" TypeName="Yad2Model.GroupAdd" StoreEntitySet="Adds">
+      <EndProperty Name="Group">
+        <ScalarProperty Name="Id" ColumnName="Group_Id" />
+      </EndProperty>
+      <EndProperty Name="Add">
+        <ScalarProperty Name="id" ColumnName="id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GroupPartner" TypeName="Yad2Model.GroupPartner" StoreEntitySet="GroupPartner">
+      <EndProperty Name="Group">
+        <ScalarProperty Name="Id" ColumnName="PartnerIn_Id" />
+      </EndProperty>
+      <EndProperty Name="Partner">
+        <ScalarProperty Name="Email" ColumnName="Partners_Email" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserMessageRecived" TypeName="Yad2Model.UserMessageRecived" StoreEntitySet="UserMessageRecived">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Email" ColumnName="UsersInMessage_Email" />
+      </EndProperty>
+      <EndProperty Name="Message">
+        <ScalarProperty Name="Id" ColumnName="MessagesRecived_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RequestAdd" TypeName="Yad2Model.RequestAdd" StoreEntitySet="Requests">
+      <EndProperty Name="Add">
+        <ScalarProperty Name="id" ColumnName="Add_id" />
+      </EndProperty>
+      <EndProperty Name="Request">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RequestUser" TypeName="Yad2Model.RequestUser" StoreEntitySet="Requests">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Email" ColumnName="User_Email" />
+      </EndProperty>
+      <EndProperty Name="Request">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PartnerRequest" TypeName="Yad2Model.PartnerRequest" StoreEntitySet="Requests">
+      <EndProperty Name="Partner">
+        <ScalarProperty Name="Email" ColumnName="Partner_Email" />
+      </EndProperty>
+      <EndProperty Name="Request">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

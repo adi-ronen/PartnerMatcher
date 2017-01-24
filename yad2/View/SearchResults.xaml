@@ -1,0 +1,9 @@
+﻿<Window x:Class="yad2.View.SearchResults"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SearchResults" Height="300" Width="300">
+    <Grid Background="SandyBrown">
+        <ListBox x:Name="Results" Margin="0,33,0,-31"   />
+        <Button x:Name="gotoad" Margin="105,0,100,241" Click="gotoad_Click"  >Go to Ad </Button>
+    </Grid>
+</Window>
